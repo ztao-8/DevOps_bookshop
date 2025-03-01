@@ -50,7 +50,7 @@ app.get("/books", (req,res)=>{
 
     db.query(query, [values], (err,data)=>{
         if(err) return res.json(err)
-        return res.json("Book has been created successfully!!!")
+        return res.status(201).json("Book has been created successfully!!!")
     })
   })
 
