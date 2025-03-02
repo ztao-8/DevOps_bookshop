@@ -5,7 +5,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      REACT_APP_API_URL: https://bestziyu.xyz/api  # Backend URL in prod env (use domain name)
+      VITE_API_URL: https://bestziyu.xyz/api  # Backend URL in prod env (use domain name)
     networks:
       - my_network
 
