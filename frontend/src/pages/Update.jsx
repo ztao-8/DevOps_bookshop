@@ -4,6 +4,7 @@ import axios from 'axios';
 //rafce
 const Update = () => {
 
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8800";
 
     const [book, setBook] = useState({
         title: "",
@@ -27,7 +28,7 @@ const Update = () => {
    const handleClick = async e =>{
     e.preventDefault()
     try{
-        await axios.put("http://localhost:8800/books/"+ bookID, book)
+        await axios.put(`${API_URL}/books/${bookID}`, book)
         navigate("/")
     }catch(err){
         console.log(err)

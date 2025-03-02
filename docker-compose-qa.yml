@@ -1,0 +1,19 @@
+services:
+  frontend:
+    image: ${ECR_FRONTEND_IMAGE}
+    container_name: frontend
+    ports:
+      - "3000:5173"
+    environment:
+      VITE_BOOK_APP_API_BASE_URL: https://tiansiwork.live/api  # Backend URL in prod env (use domain name)
+
+  backend:
+    image: ${ECR_BACKEND_IMAGE}
+    container_name: backend
+    ports:
+      - "8800:8800"
+    environment:
+      DB_HOST: ${DB_HOST}  # RDS endpoint
+      DB_USER: ${DB_USER}  # RDS master user
+      DB_PASSWORD: ${DB_PASSWORD}       # RDS password
+      DB_NAME: ${DB_NAME}               # RDS DB name
