@@ -9,7 +9,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 5173
+EXPOSE 3000
 
-# Start the frontend service
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["npx", "serve", "-s", "dist", "-l", "3000"]
