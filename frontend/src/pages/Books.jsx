@@ -11,7 +11,7 @@ const Books = () => {
     useEffect(()=>{
     const fetchAllBooks = async ()=>{
         try {
-          const res = await axios.get(API_URL)
+          const res = await axios.get(`${API_BASE_URL}/books`)
           setBooks(res.data)
           console.log(res)
         }catch(err){
