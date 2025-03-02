@@ -7,9 +7,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+#RUN npm run build
 
 EXPOSE 5173
 
 # Start the frontend service
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["npm", "run", "dev"]
