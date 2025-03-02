@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 app.use(express.json())//return json data using the api server postman
 
 const corsOptions = {
-    origin: process.env.URL || "http://localhost:3000",
+    origin: "https://bestziyu.xyz/" || "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE"
 };
 app.use(cors(corsOptions))
@@ -85,7 +85,7 @@ app.get("/books", (req,res)=>{
     } )
 })
 
-app.listen(8800, ()=>{
+app.listen(8800, "0.0.0.0",()=>{
     console.log("Connect to the backend!!!!")
 })
 
