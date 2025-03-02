@@ -14,6 +14,7 @@ services:
       - "8800:8800"
     environment:
       DB_HOST: ${DB_HOST}  # RDS endpoint
+      DB_PORT: 3306
       DB_USER: ${DB_USER}  # RDS master user
       DB_PASSWORD: ${DB_PASSWORD}       # RDS password
       DB_NAME: ${DB_NAME}               # RDS DB name

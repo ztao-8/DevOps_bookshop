@@ -5,10 +5,10 @@ import cors from "cors";
 const app = express();
 
 const db = mysql.createConnection({
-    host: "mysql",
-    user: "user",
-    password: "temporary_password",
-    database: "golinksdb",
+    host: process.env.DB_HOST || "mysql",
+    user: process.env.DB_USER || "user",
+    password: process.env.DB_PASSWORD || "temporary_password",
+    database: process.env.DB_NAME || "golinksdb",
     port: 3306
 })
 
