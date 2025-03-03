@@ -13,5 +13,5 @@ COPY . .
 
 EXPOSE 8800
 
-# 运行后端服务器
+# running backend
 CMD ["node", "index.js"]

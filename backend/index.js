@@ -27,7 +27,7 @@ const corsOptions = {
         }
     },
     methods: "GET,POST,PUT,DELETE",
-    credentials: true, // ✅ 允许携带 cookies
+    credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
