@@ -22,7 +22,7 @@ jobs:
         if: "! contains(env.MESSAGE, 'release new tag')"
         run: |
           echo "🚫 Commit message does not match 'release new tag'. Skipping release."
-          exit 0  # 直接跳过 release
+          exit 1  # 直接跳过 release
 
       - name: Install Node.js
         uses: actions/setup-node@v4
