@@ -31,8 +31,9 @@ app.use(express.json())//return json data using the api server postman
 //     allowedHeaders: ["Content-Type", "Authorization"]
 // };
 const corsOptions = {
-    origin: "*",  // 允许所有域
+    origin: ["https://bestziyu.xyz", "https://rc.bestziyu.xyz","http://localhost:3000"], // ✅ 允许特定域名
     methods: "GET,POST,PUT,DELETE",
+    credentials: true, // ✅ 允许携带 Cookie 或者身份验证信息
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
