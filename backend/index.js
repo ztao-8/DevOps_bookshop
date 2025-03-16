@@ -33,7 +33,6 @@ app.use(express.json())//return json data using the api server postman
 const corsOptions = {
     origin: "*",  // 允许所有域
     methods: "GET,POST,PUT,DELETE",
-    credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
