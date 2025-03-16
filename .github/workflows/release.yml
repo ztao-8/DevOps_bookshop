@@ -19,10 +19,21 @@ jobs:
         run: echo "MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
       - name: Check Commit Message
-        if: "! contains(env.MESSAGE, 'release new tag')"
+        id: check_commit
         run: |
+          if [[ "$MESSAGE" != "release new tag" ]]; then
           echo "🚫 Commit message does not match 'release new tag'. Skipping release."
-          exit 1  # 直接跳过 release
+          echo "SKIP_RELEASE=true" >> $GITHUB_ENV
+          else
+          echo "✅ Commit matches! Proceeding with release."
+          fi
+
+      - name: Stop Execution if SKIP_RELEASE is True
+        if: env.SKIP_RELEASE == 'true'
+        run: |
+          echo "🛑 Exiting workflow without failing."
+          exit 0
+        continue-on-error: true
 
       - name: Install Node.js
         uses: actions/setup-node@v4
