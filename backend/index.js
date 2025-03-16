@@ -36,7 +36,7 @@ const corsOptions = {
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 app.get("/", (req,res)=>{
     res.json("Hello World from the backend!!!")
