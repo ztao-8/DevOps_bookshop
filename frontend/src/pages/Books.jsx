@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 //
 const Books = () => {
 
-    const API_URL = (window.location.hostname.includes("rc.bestziyu.xyz") ? "https://rc.bestziyu.xyz/api" : import.meta.env.VITE_API_URL || "http://localhost:8800" );
-    console.log("API_URL:", API_URL);
+    const API_URL =  "https://rc.bestziyu.xyz/api" || import.meta.env.VITE_API_URL || "http://localhost:8800" ;
+
     const [books, setBooks] = useState([])
 
     useEffect(()=>{
