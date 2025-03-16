@@ -27,11 +27,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
+      - name: Push release tag  # 🆕 确保 tag 被推送到 GitHub
+        run: git push --tags
+
       - name: Extract Release Tag
         id: extract_tag
         run: |
-          TAG=$(git describe --tags --abbrev=0)
-          echo "RELEASE_TAG=${TAG}" >> $GITHUB_ENV
+          TAG=$(git tag --sort=-creatordate | head -n 1)  # 取最新 tag
+          if [ -z "$TAG" ]; then
+            echo "❌ No release tag found!"
+            exit 1
+          fi
+          echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
           echo "✅ Extracted Release Tag: $TAG"
 
       - name: Trigger Promotion Workflow in Infra Repo
