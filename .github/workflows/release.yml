@@ -18,36 +18,23 @@ jobs:
         id: commit_message
         run: echo "MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
-      - name: Check Commit Message
-        id: check_commit
-        run: |
-          if [[ "$MESSAGE" != "release new tag" ]]; then
-            echo "🚫 Commit message does not match 'release new tag'. Skipping release."
-            echo "SKIP_RELEASE=true" >> $GITHUB_ENV
-          fi
-
       - name: Install Node.js
-        if: env.SKIP_RELEASE != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install Dependencies
-        if: env.SKIP_RELEASE != 'true'
         run: npm install --save-dev semantic-release @semantic-release/github @semantic-release/changelog @semantic-release/exec
 
       - name: Run Semantic Release
-        if: env.SKIP_RELEASE != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
       - name: Push release tag  # 🆕 确保 tag 被推送到 GitHub
-        if: env.SKIP_RELEASE != 'true'
         run: git push --tags
 
       - name: Extract Release Tag
-        if: env.SKIP_RELEASE != 'true'
         id: extract_tag
         run: |
           TAG=$(git tag --sort=-creatordate | head -n 1)  # 取最新 tag
