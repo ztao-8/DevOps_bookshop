@@ -15,17 +15,23 @@ const db = mysql.createConnection({
 app.use(express.json())//return json data using the api server postman
 
 
-const allowedOrigins = ["https://bestziyu.xyz", "http://localhost:3000", "https://rc.bestziyu.xyz"];
-
-
+// const allowedOrigins = ["https://bestziyu.xyz", "http://localhost:3000", "https://rc.bestziyu.xyz"];
+//
+//
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, origin); // ✅ 允许前端请求
+//         } else {
+//             callback(new Error("Not allowed by CORS")); // ❌ 拒绝
+//         }
+//     },
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//     allowedHeaders: ["Content-Type", "Authorization"]
+// };
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, origin); // ✅ 允许前端请求
-        } else {
-            callback(new Error("Not allowed by CORS")); // ❌ 拒绝
-        }
-    },
+    origin: "*",  // 允许所有域
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
