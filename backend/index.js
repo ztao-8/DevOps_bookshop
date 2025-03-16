@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 app.use(express.json())//return json data using the api server postman
 
 
-const allowedOrigins = ["https://bestziyu.xyz", "http://localhost:3000", "http://rc.bestziyu.xyz"];
+const allowedOrigins = ["https://bestziyu.xyz", "http://localhost:3000", "https://rc.bestziyu.xyz"];
 
 
 const corsOptions = {

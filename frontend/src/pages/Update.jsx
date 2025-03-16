@@ -4,7 +4,7 @@ import axios from 'axios';
 //rafce
 const Update = () => {
 
-    const API_URL =  import.meta.env.VITE_API_URL || "http://localhost:8800" || "http://rc.bestziyu.xyz";
+    const API_URL =  import.meta.env.VITE_API_URL || "http://localhost:8800" || "https://rc.bestziyu.xyz/api";
 
     const [book, setBook] = useState({
         title: "",
