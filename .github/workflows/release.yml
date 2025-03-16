@@ -22,36 +22,32 @@ jobs:
         id: check_commit
         run: |
           if [[ "$MESSAGE" != "release new tag" ]]; then
-          echo "🚫 Commit message does not match 'release new tag'. Skipping release."
-          echo "SKIP_RELEASE=true" >> $GITHUB_ENV
-          else
-          echo "✅ Commit matches! Proceeding with release."
+            echo "🚫 Commit message does not match 'release new tag'. Skipping release."
+            echo "SKIP_RELEASE=true" >> $GITHUB_ENV
           fi
 
-      - name: Stop Execution if SKIP_RELEASE is True
-        if: env.SKIP_RELEASE == 'true'
-        run: |
-          echo "🛑 Exiting workflow without failing."
-          exit 0
-        continue-on-error: true
-
       - name: Install Node.js
+        if: env.SKIP_RELEASE != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install Dependencies
+        if: env.SKIP_RELEASE != 'true'
         run: npm install --save-dev semantic-release @semantic-release/github @semantic-release/changelog @semantic-release/exec
 
       - name: Run Semantic Release
+        if: env.SKIP_RELEASE != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
       - name: Push release tag  # 🆕 确保 tag 被推送到 GitHub
+        if: env.SKIP_RELEASE != 'true'
         run: git push --tags
 
       - name: Extract Release Tag
+        if: env.SKIP_RELEASE != 'true'
         id: extract_tag
         run: |
           TAG=$(git tag --sort=-creatordate | head -n 1)  # 取最新 tag
@@ -63,6 +59,7 @@ jobs:
           echo "✅ Extracted Release Tag: $TAG"
 
       - name: Trigger Promotion Workflow in Infra Repo
+        if: env.SKIP_RELEASE != 'true'
         run: |
           curl -X POST -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: Bearer ${{ secrets.TOKEN }}" \
