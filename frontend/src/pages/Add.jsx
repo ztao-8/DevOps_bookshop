@@ -35,6 +35,8 @@ console.log(book)
    <input type="text" placeholder="description" onChange={handleChange} name="description"/>
    <input type="number" placeholder="price" onChange={handleChange} name="price"/>
    <input type="text" placeholder="cover" onChange={handleChange} name="cover"/>
+   <input type="text" placeholder="writer" onChange={handleChange} name="writer"/>
+   <input type="text" placeholder="version" onChange={handleChange} name="version"/>
    <button onClick={handleClick} className='addButton'>
     Add
    </button>
